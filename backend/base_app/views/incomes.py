@@ -9,6 +9,7 @@ from .settings import SettingsView
 
 @login_required
 def incomes(request):
+    
     incomes = Income.objects.all().order_by('-amount')
     
     if request.method == "POST":

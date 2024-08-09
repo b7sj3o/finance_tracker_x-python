@@ -6,18 +6,22 @@
 
 <!-- css -->
 
-{% block style %}
-<style>
-    body {
-        background-color: gray;
-    }
-</style>
-{% endblock style %}
-
 <!-- js -->
 {% block script %}{% endblock script %}
 
 <!-- html -->
 {% block content %}
-<h1 class="w-100 fs-1 text-center bg-success">Hello world</h1>
+
+
+<div class="container">
+    {% if request.user.is_authenticated %}
+        <h2 class="text-center mt-4">Вітаю, {{request.user.username}}</h2>
+        <h2 class="balance">Поточний баланс: {{balance}}</h2>
+        <h2 class="all_incomes">Дохід за весь час: {{all_incomes}}</h2>
+        <h2 class="all_expenses">Витрати за весь час: {{all_expenses}}</h2>
+        <h2 class="limit_balance">Недоторканий запас: {{limit_balance}}</h2>
+    {% endif %}
+</div>
+
+
 {% endblock content %}

@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<!-- title -->
+{% block title %}Main page{% endblock title %}
+
+<!-- css -->
+
+<!-- js -->
+{% block script %}{% endblock script %}
+
+<!-- html -->
+{% block content %}
+
+{% if not is_update %}
+
+<div class="container">
+    <h1 class="text-center mt-4">Добавити дохід</h1>
+    <form action="" method="POST" class="d-flex">
+        {% csrf_token %} 
+        {% for form_item in incomes_form %}
+            <div class="w-100">
+                <label for="exampleInputEmail1" class="form-label">{{ form_item.label }}</label>
+                {{ form_item }}
+            </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-primary w-50">Submit</button>
+    </form>
+    <hr>
+    <h1 class="text-center mt-4">Добавити тип доходів</h1>
+    <form action="{% url 'create_incomes_type' %}" method="POST" class="w-100" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+        {% csrf_token %} 
+        {% for form_item in incomes_type_form %}
+            <div class="mb-3 w-50">
+                <label class="form-label">{{ form_item.label }}</label>
+                {{ form_item }}
+            </div>
+        {% endfor %}
+    
+        <button type="submit" class="btn btn-primary w-50">Submit</button>
+    </form>
+    <hr>
+    <h1 class="text-center mt-4">Всі доходи</h1>
+    <table class="table table-hover table-dark">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Сума</th>
+                <th scope="col">Категорія</th>
+                <th scope="col">Час (дд.мм.рррр)</th>
+                <th scope="col">Редагувати</th>
+                <th scope="col">Видалити</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for income in incomes %}
+                <tr>
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td>{{ income.amount }}</td>
+                    <td>{{ income.income_type }}</td>
+                    <td>{{ income.time|date:"d.m.Y" }}</td>
+                    <td><a href="{% url 'update_income' income.id %}"><i class="bi bi-pencil-square" style="color: white;"></i></a></td>
+                    <td><a href="{% url 'remove_income' income.id %}"><i class="bi bi-trash" style="color: white;"></i></a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+        
+    </table>
+</div>
+
+{% else %}
+
+<div class="container">
+    <h1 class="text-center mt-4">Редагувати дохід</h1>
+    <hr>
+    <form action="" method="POST" class="d-flex">
+        {% csrf_token %} 
+        {% for form_item in form %}
+            <div class="w-100">
+                <label for="exampleInputEmail1" class="form-label">{{ form_item.label }}</label>
+                {{ form_item }}
+            </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-primary w-50">Submit</button>
+    </form>
+    
+</div>
+
+{% endif %}
+
+{% endblock content %}

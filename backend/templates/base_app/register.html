@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<!-- title -->
+{% block title %}Main page{% endblock title %}
+
+<!-- css -->
+
+<!-- js -->
+{% block script %}{% endblock script %}
+
+<!-- html -->
+{% block content %}
+
+
+{% if form.errors %}
+    <div class="container">
+        <div class="alert alert-warning alert-dismissible fade show mt-4" role="alert">
+            {% for field in form %}
+                {% for error in field.errors %}
+                    <li style="list-style-type:disc;">{{ error }}</li>
+                {% endfor %}
+            {% endfor %}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    </div>
+{% endif %}
+
+<div class="container w-5">
+    <h1 class="text-center">Зареєструватись</h1>
+    {% include "base_form.html" with form=form %}
+</div>
+
+
+{% endblock content %}

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<!-- title -->
+{% block title %}Main page{% endblock title %}
+
+<!-- css -->
+
+<!-- js -->
+{% block script %}{% endblock script %}
+
+<!-- html -->
+{% block content %}
+
+<div class="container">
+    <h1 class="text-center mt-4">Налаштування</h1>
+    <hr>
+    <h2>Змінити суму НЗ</h2>
+    <form action="" method="POST" class="w-50">
+        {% csrf_token %} 
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Сума</label>
+            <input type="number" name="limit_balance" class="form-control" id="">
+        </div>
+        <button type="submit" class="btn btn-primary w-50">Submit</button>
+    </form>
+</div>
+
+
+{% endblock content %}

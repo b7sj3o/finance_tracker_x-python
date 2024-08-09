@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<!-- title -->
+{% block title %}Main page{% endblock title %}
+
+<!-- css -->
+
+
+<!-- js -->
+{% block script %}{% endblock script %}
+
+<!-- html -->
+{% block content %}
+
+
+<div class="container w-50">
+    <h1 class="text-center">Увійти</h1>
+    {% include "base_form.html" with form=form %}
+</div>
+
+
+{% endblock content %}

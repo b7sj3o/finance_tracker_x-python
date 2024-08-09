@@ -8,6 +8,7 @@ from ..models import Expense, Income
 
 
 class Home(View):
+    template_name="index.html"
     
     def get(self, request):
         self.incomes = self.request.user.total_incomes()
@@ -22,7 +23,7 @@ class Home(View):
             "limit_balance": self.limit_balance,
         }
         
-        return render(request, "index.html", context)
+        return render(request, self.template_name, context)
     
     
     

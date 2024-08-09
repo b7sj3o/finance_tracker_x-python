@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
 
 from ..models import Income, IncomeType
@@ -7,10 +6,9 @@ from ..forms import IncomeForm, IncomeTypeForm
 from .settings import SettingsView
 
 
-@login_required
 def incomes(request):
     
-    incomes = Income.objects.all().order_by('-amount')
+    incomes = Income.objects.filter(creator=request.user).order_by('-amount')
     
     if request.method == "POST":
         form = IncomeForm(request.POST)
@@ -43,7 +41,6 @@ def incomes(request):
     return render(request, 'incomes.html', context)    
 
 
-@login_required
 def create_incomes_type(request):
     if request.method == "POST":
         form = IncomeTypeForm(request.POST)
@@ -57,7 +54,6 @@ def create_incomes_type(request):
     return redirect("incomes")
 
 
-@login_required
 def update_income(request, pk):
     income = get_object_or_404(Income, id=pk)
     form = IncomeForm(instance=income)
@@ -78,7 +74,6 @@ def update_income(request, pk):
     return render(request, "incomes.html", context)
 
 
-@login_required
 def remove_income(request, pk):
     income = get_object_or_404(Income, id=pk)
     try:

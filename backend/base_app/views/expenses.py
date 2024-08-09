@@ -8,9 +8,8 @@ from ..forms import ExpenseForm, ExpenseTypeForm
 from .settings import SettingsView
 
 
-@login_required
 def expenses(request):
-    expenses = Expense.objects.all().order_by('amount')
+    expenses = Expense.objects.filter(creator=request.user).order_by('amount')
     
     if request.method == "POST":
         form = ExpenseForm(request.POST)
@@ -41,8 +40,6 @@ def expenses(request):
         expense_form = ExpenseForm()
         expense_type_form = ExpenseTypeForm()
             
-
-
     context = {
         "expenses": expenses,
         "expenses_form": expense_form,
@@ -51,7 +48,6 @@ def expenses(request):
     return render(request, 'expenses.html', context)   
 
 
-@login_required
 def create_expenses_type(request):
     if request.method == "POST":
         form = ExpenseTypeForm(request.POST)
@@ -65,7 +61,6 @@ def create_expenses_type(request):
     return redirect("expenses")
 
 
-@login_required
 def update_expense(request, pk):
     expense = get_object_or_404(Expense, id=pk)
     form = ExpenseForm(instance=expense)
@@ -85,7 +80,6 @@ def update_expense(request, pk):
     return render(request, "expenses.html", context)
 
 
-@login_required
 def remove_expense(request, pk):
     expense = get_object_or_404(Expense, id=pk)
     try:

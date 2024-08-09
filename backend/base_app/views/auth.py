@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required
 
 from ..forms import RegisterUserForm, LoginUserForm
 
@@ -39,7 +38,7 @@ def login_user(request):
 
     return render(request, 'login.html', context)
 
-@login_required
+
 def logout_user(request):
     try:
         logout(request)
@@ -48,6 +47,7 @@ def logout_user(request):
         messages.error(request, f'Трапилася помилка, {ex}')
         
     return redirect('home')
+
 
 def register_user(request):
     if request.user.is_authenticated:

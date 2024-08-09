@@ -41,8 +41,12 @@
     <li><strong>Встановлення залежностей:</strong>
         <pre><code>pip install -r requirements.txt</code></pre>
     </li>
+    <li><strong>Заходимо в директорію проекту:</strong>
+        <pre><code>cd backend</code></pre>
+    </li>
     <li><strong>Налаштування бази даних:</strong>
         <p>Виконайте міграції:</p>
+        <pre><code>python manage.py makemigrations</code></pre>
         <pre><code>python manage.py migrate</code></pre>
     </li>
     <li><strong>Запуск сервера:</strong>

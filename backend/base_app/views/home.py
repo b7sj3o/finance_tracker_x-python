@@ -8,10 +8,7 @@ from ..models import Expense, Income
 
 
 class Home(View):
-    incomes = Income.objects.aggregate(Sum("amount"))["amount__sum"]
-    expenses = Expense.objects.aggregate(Sum("amount"))["amount__sum"]
-    limit_balance = 0
-
+    
     def get(self, request):
         self.incomes = self.request.user.total_incomes()
         self.expenses = self.request.user.total_expenses()

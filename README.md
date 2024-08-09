@@ -46,7 +46,6 @@
     </li>
     <li><strong>Налаштування бази даних:</strong>
         <p>Виконайте міграції:</p>
-        <pre><code>python manage.py makemigrations</code></pre>
         <pre><code>python manage.py migrate</code></pre>
     </li>
     <li><strong>Запуск сервера:</strong>

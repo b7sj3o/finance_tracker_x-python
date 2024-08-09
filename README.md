@@ -28,12 +28,15 @@
     <li><strong>Клонування репозиторію:</strong>
         <pre><code>git clone https://github.com/b7sj3o/finance_tracker_x-python.git</code></pre>
     </li>
+    <li><strong>Зайти в директорію проєкту:</strong>
+        <pre><code>cd finance_tracker_x-python</code></pre>
+    </li>
     <li><strong>Створення віртуального середовища (venv):</strong>
         <pre><code>python -m venv venv</code></pre>
     </li>
     <li><strong>Увійти в venv</strong>
-        <pre><code>venv/Scripts/activate</code> - якщо ви використовуєте Windows terminal</pre>
-        <pre><code>source venv/bin/activate</code> - якщо ви використовуєте Linux | MacOS</pre>
+        <pre><code>venv/Scripts/activate</code></pre> - якщо ви використовуєте Windows terminal
+        <pre><code>source venv/bin/activate</code></pre> - якщо ви використовуєте Linux | MacOS
     </li>
     <li><strong>Встановлення залежностей:</strong>
         <pre><code>pip install -r requirements.txt</code></pre>
